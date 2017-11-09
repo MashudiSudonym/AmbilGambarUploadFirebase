@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "732646190984",
+    "firebase_url": "https://takepicture-me.firebaseio.com",
+    "project_id": "takepicture-me",
+    "storage_bucket": "takepicture-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732646190984:android:e54b3f30020a6b36",
+        "android_client_info": {
+          "package_name": "com.example.masrobot.takepicture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732646190984-abq9n9aun4poe5a4dpa3utaejbqq7b06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.masrobot.takepicture",
+            "certificate_hash": "b7cbc068cd66ab6abb1d543a6e589b29599d2713"
+          }
+        },
+        {
+          "client_id": "732646190984-u0oiubcb6oaq2bl34d4aig7tnv7jilar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFni818Ua-24mj3YTcp85VV6GSq7NViyg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732646190984-u0oiubcb6oaq2bl34d4aig7tnv7jilar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
