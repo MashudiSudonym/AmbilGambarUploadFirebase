@@ -11,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
+import com.github.babedev.dexter.dsl.runtimePermission
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,11 +23,6 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.listener.PermissionRequest
 
 
 class MainActivity : AppCompatActivity() {
@@ -83,35 +79,6 @@ class MainActivity : AppCompatActivity() {
             }
             else -> toast("Unrecognized request code")
         }
-    }
-
-    // permissions use dexter plugin
-    private fun validatePermissions() {
-        Dexter.withActivity(this)
-                .withPermissions(
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ).withListener(object : MultiplePermissionsListener {
-            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-
-            }
-
-            override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>,
-                                                            token: PermissionToken) {
-                alert("Permissions for this Application") {
-                    title = "Permissions Required"
-                    positiveButton("Ok") {
-                        dialog -> dialog.dismiss()
-                        token?.continuePermissionRequest()
-                    }
-                    negativeButton("Cancel") {
-                        dialog -> dialog.dismiss()
-                        token?.cancelPermissionRequest()
-                    }
-                }
-            }
-        }).check()
     }
 
     // call File Manager or Gallery Internal / External Storage
@@ -171,7 +138,6 @@ class MainActivity : AppCompatActivity() {
         bmOptions.inSampleSize = scaleFactor
 
         return BitmapFactory.decodeFile(imageFilePath, bmOptions)
-
     }
 
     // function upload to firebase
@@ -195,5 +161,44 @@ class MainActivity : AppCompatActivity() {
                         progressDialog.setMessage("Uploaded" + progress.toInt() + "%...")
                     }
         }
+    }
+
+    // permissions use dexter plugin
+    fun validatePermissions() {
+        runtimePermission {
+            permissions(Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) {
+                checked {
+                    toast("permission Checked")
+                }
+            }
+        }
+
+//        Dexter.withActivity(this)
+//                .withPermissions(
+//                        Manifest.permission.CAMERA,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE,
+//                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                ).withListener(object : MultiplePermissionsListener {
+//            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+//
+//            }
+//
+//            override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>,
+//                                                            token: PermissionToken) {
+//                alert("Permissions for this Application") {
+//                    title = "Permissions Required"
+//                    positiveButton("Ok") {
+//                        dialog -> dialog.dismiss()
+//                        token?.continuePermissionRequest()
+//                    }
+//                    negativeButton("Cancel") {
+//                        dialog -> dialog.dismiss()
+//                        token?.cancelPermissionRequest()
+//                    }
+//                }
+//            }
+//        }).check()
     }
 }

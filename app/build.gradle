@@ -8,7 +8,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.masrobot.takepicture"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -46,7 +46,9 @@ dependencies {
     compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
     compile "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
 
-    compile 'com.karumi:dexter:4.2.0'
+//    compile 'com.karumi:dexter:4.2.0'
+    compile 'com.github.babedev.dexter.dsl:dsl:0.1.2'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
